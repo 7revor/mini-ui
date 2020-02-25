@@ -26,3 +26,15 @@ export function fmtEvent(props, event) {
     }
   }
 }
+/**
+ * 提取 data- 后的内容，删除 - 且将 - 后的第一个字符改为大写
+ * @param {string} key dataset key eg.data-userId
+ */
+function getKey(key) {
+  return key.replace(/(^data-)|(-)(.)/g, (match, f, s, t) => {
+    if (s && t) {
+      return t.toUpperCase()
+    }
+    return ''
+  });
+}

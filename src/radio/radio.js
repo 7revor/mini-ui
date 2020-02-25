@@ -1,4 +1,4 @@
-import { fmtEvent } from '/common/util/util'
+import { fmtEvent } from '../util'
 Component({
   data: {
     checked: false

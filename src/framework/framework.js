@@ -40,7 +40,6 @@ Component({
      */
     onPathChange() {
       const { currentRoute, routeRecord } = this.$page.$router;
-      console.error(currentRoute)
       const parentPath = currentRoute.path.replace(/\/[^\/]*$/, '');
       const parentRoute = routeRecord[parentPath];
       if (parentRoute && parentRoute.childType === 'tab') {    // 进入子tab页
