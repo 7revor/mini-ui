@@ -25,7 +25,7 @@ Component({
      * 是否含有下级路由
      */
     hasNext(route) {
-      return route.children && route.children.length && route.childType !== 'tab'
+      return route.children && route.children.length && route.childType === 'overlay'
     },
     /**
      * 是否为同一路径
@@ -35,7 +35,7 @@ Component({
     },
     /**
      * 一级菜单点击
-     * @param {}} ev 
+     * @param {}} ev
      */
     menuTap(ev) {
       const { dataset: { menu } } = ev.target;
@@ -89,7 +89,7 @@ Component({
     },
     /**
      * 悬浮菜单点击事件
-     * @param {*} ev 
+     * @param {*} ev
      */
     overlayMenuTapHandler(ev) {
       const menu = ev.target.dataset.menu;    // 点击的悬浮菜单
@@ -102,7 +102,7 @@ Component({
     },
     /**
      * 悬浮菜单关闭
-     * @param {*} ev 
+     * @param {*} ev
      */
     onOverlayClose(ev) {
       const requestIndex = ev.target.dataset.index

@@ -6,13 +6,13 @@
         {{dialog.title||'提示'}}
       </view>
     </slot>
-    <slot name="content">
+    <slot>
       <view class="py-dialog-content">
         {{content}}
       </view>
     </slot>
     <slot name="footer">
-      <view class="py-dialog-footer">
+      <view a:if="{{type==='confirm'||type==='alert'}}" class="py-dialog-footer">
         <py-button a:if="{{type==='confirm'}}" onTap="cancel" style="width:56px;height:32px;">{{cancelText||'取消'}}</py-button>
         <py-button onTap="sure" style="width:56px;height:32px;margin-left:10px;" type="danger">{{sureText||'确定'}}</py-button>
       </view>

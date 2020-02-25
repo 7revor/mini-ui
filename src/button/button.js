@@ -4,6 +4,7 @@ Component({
   props: {
     onTap: () => { },
     className: '',
-    style: ''
+    style: '',
+    type:''
   }
 });

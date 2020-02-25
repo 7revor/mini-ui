@@ -1,3 +1,1 @@
-<view class="row-start-center {{className||''}}" style="{{style||''}}">
-  <slot value="value"/>
-</view>
+<slot />
