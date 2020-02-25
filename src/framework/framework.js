@@ -26,13 +26,21 @@ Component({
         next.param && (targe.param = next.param);
         this.$page.$router.push(targe); // 跳转到第一个子tab并传递参数
         return false
-      } else return true
+      } else {
+        if (next.default) { // 含有默认子路由
+          const targe = { path: next.path + '/' + next.default };
+          next.param && (targe.param = next.param);
+          this.$page.$router.push(targe); // 跳转到默认子页面
+          return false
+        } else return true
+      }
     },
     /**
      * 页面路由跳转回调
      */
     onPathChange() {
       const { currentRoute, routeRecord } = this.$page.$router;
+      console.error(currentRoute)
       const parentPath = currentRoute.path.replace(/\/[^\/]*$/, '');
       const parentRoute = routeRecord[parentPath];
       if (parentRoute && parentRoute.childType === 'tab') {    // 进入子tab页
@@ -45,7 +53,7 @@ Component({
       } else {       // 进入普通页
         this.setData({ tabs: [], activeKey: '', parentPath: '' }); // 清除tab属性
       }
-      this.setData({ currentRoute: { ...currentRoute } })
+      this.setData({ currentRoute: { ...currentRoute } });
     },
     /**
      * tab导航跳转

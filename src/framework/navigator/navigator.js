@@ -22,10 +22,16 @@ Component({
   },
   methods: {
     /**
-     * 是否含有下级路由
+     * 是够含有子路由
      */
-    hasNext(route) {
-      return route.children && route.children.length && route.childType === 'overlay'
+    hasChildren(route) {
+      return route.children && route.children.length
+    },
+    /**
+     * 路由是否可以直接跳转
+     */
+    canNavigate(route) {
+      return !this.hasChildren(route) || (this.hasChildren(route) && route.childType === 'tab'); // 没有子路由或者子路由为tab
     },
     /**
      * 是否为同一路径
@@ -38,7 +44,7 @@ Component({
      * @param {}} ev
      */
     menuTap(ev) {
-      const { dataset: { menu } } = ev.target;
+      const {dataset: {menu}} = ev.target;
       const length = (menu.children || {}).length || 0;
       const id = ev.target.id;
       if (id) {
@@ -49,8 +55,8 @@ Component({
           ['rotates.' + id]: targetRotate === 'rotate(0deg)' || !targetRotate ? 'rotate(180deg)' : 'rotate(0deg)'
         })
       }
-      if (menu.url) my.navigateTo({ url: menu.url }); // 手动跳转
-      else if (!this.hasNext(menu) && !this.isSamePath(menu.path)) {
+      if (menu.url) my.navigateTo({url: menu.url}); // 手动跳转
+      else if (this.canNavigate(menu) && !this.isSamePath(menu.path)) { // 没有子路由，或者tab类型
         this.$page.$router.push(menu.path);
       }
     },
@@ -58,34 +64,24 @@ Component({
      * 二级菜单点击
      */
     subMenuTap(ev) {
-      const currTarget = ev.target.id;
-      const { subMenu: currMenu, path } = ev.target.dataset;
+      const currTarget = ev.target.id; // 点击目标
+      const {subMenu: currMenu, path} = ev.target.dataset;
       currMenu.pathStack = path;
-      if (!this.hasNext(currMenu)) {                               // 无三级菜单直接导航
-        let pathStack = path.filter(path => path);
-        currMenu.default && pathStack.push('/' + currMenu.default);// 如果含有默认子路由，追加默认子路由path
-        const targerPath = `${pathStack.join('')}`;
-        if (!this.isSamePath(targerPath)) { this.$page.$router.push(targerPath) };
-        this.setData({ overlayMenu: {} })
-      } else {                                                    // 含有三级菜单
-        if (this.data.target === currTarget) { // 点击相同节点，直接关闭
-          this.setData({ visible: !this.data.visible })
-        } else {          // 点击不同节点
-          this.setData({ // 切换节点
-            target: currTarget,
-            visible: true
-          })
-        }
+      if (currMenu.childType === 'overlay') {     // 浮框类型子路由
+        const isSameNode = this.data.target === currTarget;
         this.setData({
-          overlayMenu: currMenu
+          visible: isSameNode ? false : true,
+          target: isSameNode ? '' : currTarget,
+          overlayMenu: isSameNode ? {} : currMenu
         })
+      } else {      // 不是浮框类型
+        const targerPath = path.filter(path => path).join('');
+        if (!this.isSamePath(targerPath)) {
+          this.$page.$router.push(targerPath)
+        }
+        ;  // 直接跳转
+        this.setData({overlayMenu: {}})
       }
-    },
-    /**
-     * 标签页处理
-     */
-    handleTab() {
-
     },
     /**
      * 悬浮菜单点击事件
@@ -96,9 +92,7 @@ Component({
       const overlayMenu = this.data.overlayMenu; // 当前二级菜单
       let pathStack = overlayMenu.pathStack.filter(path => path);
       this.$page.$router.push(`${pathStack.join('')}${menu.path}`);
-      this.setData({
-        visible: false
-      });
+      this.setData({ visible: false,overlayMenu:{},target:'' });
     },
     /**
      * 悬浮菜单关闭
