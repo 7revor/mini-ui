@@ -112,10 +112,12 @@
 }
 
 .py-navigator-overlay-menu-item {
-  width: 90px;
+  width: 120px;
   height: 30px;
   line-height: 30px;
-  padding-left: 30px;
+  text-align: center;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  font-size: 14px;
 }
 
 .py-navigator-overlay-menu-item:hover {
