@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents":{
+    "py-navigator":"./navigator/navigator",
+    "bread-crumb":"./bread-crumb/bread-crumb",
+    "tab-bar":"../tabbar/tabbar",
+    "py-dialog":"../dialog/dialog",
+    "toast":"../toast/toast"
+  }
+}

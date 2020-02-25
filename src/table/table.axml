@@ -1,0 +1,14 @@
+<view class="py-table-container {{className||''}}">
+  <view class="py-table-header row-start-center {{headerClass||''}}">
+    <slot type="header"/>
+  </view>
+    <loading className="py-table-body" style="top:36px;"  loading="{{loading}}">
+      <view a:if="{{dataSource.length===0&&loading===false&&blank!==false}}"  class="py-table-blank-container">
+          <image mode="aspectFit" class="py-table-blank" src="{{blankImg||'https://img.alicdn.com/imgextra/i4/479769835/O1CN01iQMFON2MWTsZOoE7m_!!479769835.png'}}"/>
+          <text>{{blankMsg||'暂无记录'}}</text>
+      </view>
+      <view a:else class="row-start-center py-table-row {{rowClass||''}}" style="{{rowStyle||''}}" a:for="{{dataSource}}" a:for-index="idx">
+        <slot index="{{idx}}" row="{{item}}" />
+      </view>
+    </loading>
+</view>

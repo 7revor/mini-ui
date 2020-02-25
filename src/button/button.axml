@@ -1,0 +1,4 @@
+  <view class="py-button {{type?`py-button-${type}`:''}} {{className||''}} {{disabled?'disabled':''}}" style={{style}} onTap="tapHandler">
+    <icon a:if="{{icon}}" custom type="{{icon}}" class="icon button-icon" style="margin-right:3px;" />
+    <slot/>
+  </view>

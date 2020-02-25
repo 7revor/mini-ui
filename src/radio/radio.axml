@@ -1,0 +1,4 @@
+<view class="row-start-center {{className||''}}" style="cursor:pointer;{{style||''}}" data-value="{{value}}" onTap="tapHandler" >
+  <icon custom type="{{checked?'icon-danxuan':'icon-uncheck'}}" class="icon" style="margin-right:10px;"/>
+  <slot/>
+</view>

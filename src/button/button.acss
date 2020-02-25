@@ -1,0 +1,45 @@
+.py-button{
+  border-radius: 3px;
+  width: 80px;
+  height: 28px;
+  background-color: #fff;
+  color: #333333;
+  font-size: 12px;
+  line-height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #999999;
+  cursor: pointer;
+}
+.py-button:active{
+  background-color: #cccccc;
+}
+.py-button-primary{
+  border: 1px solid #f13c31;
+  color:#f13c31;
+  background-color: #fff;
+}
+.py-button-primary:active{
+  border: 1px solid #f13c31;
+  color:#f13c31;
+  background-color: rgba(241, 60, 49, 0.1);
+}
+
+.py-button-danger{
+  color:#fff;
+  border: 0;
+  background-color: #F54531;
+}
+.py-button-danger:active{
+   background-color: rgba(245, 69, 49, 0.5);
+}
+.button-icon{
+  width: 20px;
+  height: 20px;
+}
+.py-button.disabled{
+  cursor: not-allowed;
+  background-color: #FAFAFA;
+  border: 1px solid #E6E7EB;
+}

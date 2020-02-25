@@ -1,0 +1,34 @@
+<import-sjs from="./navigator.sjs" name="sjs"/>
+<view class="py-navigator">
+  <!--logo信息区-->
+  <view class="py-navigator-logoArea column-start-center">
+    <image onTap="goHome" class="py-navigator-image" mode="aspectFit" src="{{config.info.logo}}"/>
+    <text class="py-navigator-app-name">{{config.info.name}}</text>
+    <text class="py-navigator-app-memo">{{config.info.memo}}</text>
+  </view>
+  <!--菜单区-->
+  <view class="py-navigator-menu column-start-center">
+    <!--一级菜单-->
+    <view a:for="{{config.routes}}" a:for-item="menu" class="py-navigator-menu-item" a:for-index="idx" id="{{'menu-'+idx}}">
+      <view a:if="{{menu.isNavigator!==false}}" onTap="menuTap" id="{{'menu-'+idx}}" data-menu="{{menu}}" class="py-navigator-menu-label {{sjs.isActive(menu,currentRoute)&&!sjs.hasNext(menu)?'active':''}}">
+        <icon a:if="{{menu.icon!==null}}" custom type="{{menu.icon}}" class="icon py-navigator-menu-icon-pre"/>
+            {{menu.name}}
+        <icon a:if="{{sjs.hasNext(menu)}}" custom type="icon-arrowDown" class="icon py-navigator-menu-arrow" style="{{transform:rotates['menu-'+idx]||'rotate(0deg)'}}"/>
+      </view>
+      <!--二级菜单容器-->
+      <view a:if="{{sjs.hasNext(menu)}}" class="sub-menu" style="{{height:heights['menu-'+idx]||0}}">
+        <!--二级菜单渲染-->
+        <view class="py-navigator-submenu-item {{sjs.isActive(subMenu,currentRoute)?'active':''}}" a:for="{{menu.children}}" a:for-index="id" a:for-item="subMenu" onTap="subMenuTap" id="{{'menu-'+idx+'-'+id}}" data-subMenu="{{subMenu}}" data-path="{{[menu.path,subMenu.path]}}">
+          {{subMenu.name}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <overlay visible="{{visible}}" target="{{target}}" safeNode="{{target}}" data-index="{{target}}" shouldUpdatePosition="true" onRequestClose="onOverlayClose" offset="{{[115,-25]}}">
+    <view a:if="{{sjs.hasNext(overlayMenu)}}" class="py-navigator-overlay-menu">
+      <view a:for="{{overlayMenu.children}}" class="py-navigator-overlay-menu-item" data-menu="{{item}}" onTap="overlayMenuTapHandler">
+        {{item.name}}
+      </view>
+    </view>
+  </overlay>
+</view>

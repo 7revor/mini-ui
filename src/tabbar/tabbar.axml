@@ -1,0 +1,12 @@
+<view class="py-tab-bar">
+  <view class="py-tab-bar-tab-container {{className||''}}" style="{{style||''}}">
+    <view a:for="{{tabs}}" onTap="tabTap" data-key="{{item.key}}" class="{{`py-tab-bar-tab ${item.key===activeKey?'active':''}`}}">
+      {{item.name}}
+    </view>
+  </view>
+  <block a:for="{{tabs}}">
+    <view a:if="{{item.key===activeKey||loaded[item.key]}}" style="{{display:item.key===activeKey?'flex':'none'}}">
+      <slot name="{{item.key}}"/>
+    </view>
+  </block>
+</view>

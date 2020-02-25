@@ -1,0 +1,62 @@
+.py-table-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 300px;
+  font-size: 12px;
+  color: #333333;
+  line-height: 18px;
+  position: relative;
+}
+
+.py-table-body {
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex: 1;
+  overflow-y: scroll;
+  position: static;
+}
+.py-table-body::-webkit-scrollbar {
+  display: none;
+}
+
+.py-table-blank-container {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.py-table-blank-container text {
+  font-size: 12px;
+  color: #666666;
+  line-height: 18px;
+}
+
+.py-table-header {
+  background: #FAFAFA;
+  width: 100%;
+  height: 36px;
+  border-bottom: 1px solid #E6E6E6;
+  text-align: center;
+}
+
+.py-table-row {
+  text-align: center;
+  border-bottom: 1px solid #E6E6E6;
+  height: 50px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.py-table-blank {
+  width: 200px;
+  height: 200px;
+  margin-top: -50px;
+}

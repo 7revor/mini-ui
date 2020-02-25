@@ -1,0 +1,9 @@
+<view onTap="tapHandler" class="pointer">
+  <slot a:if="{{type==='custom'}}" item="{{value}}" isChecked="{{checked}}"> <!-- 自定义模式-->
+    <icon class="icon" custom type="{{checked?'icon-checked':'icon-uncheck'}}"/>
+  </slot>
+  <view a:if="{{type!=='custom'}}" class="py-checkbox-container"> <!-- 标准模式 -->
+    <icon class="icon" custom type="{{checked?'icon-checked':'icon-uncheck'}}"/>
+    <slot />
+  </view>
+</view>

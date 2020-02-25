@@ -1,0 +1,10 @@
+<view class="row-start-center bread-crumb">
+  <text class="py-bread-crumb-link" onTap="link" data-path="{{{path:'/'}}}">首页</text>
+  <text style="margin:0 2rpx;">/</text>
+  <view a:for="{{breadcrumb}}" a:for-index="idx">
+    <view>
+      <text style="margin:0 2rpx;" a:if="{{idx!==0}}"> /</text>
+      <text onTap="link" data-path="{{item}}" class="{{item.breadcrumbLink!==false?'py-bread-crumb-link':''}}">{{item.name}}</text>
+    </view>
+  </view>
+</view>

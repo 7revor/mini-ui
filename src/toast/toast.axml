@@ -1,0 +1,4 @@
+<view a:if="{{open}}" class="py-toast {{visible?'active':''}}" style="margin-right:{{icon[0]?'15px':'20px'}}">
+  <icon a:if="{{icon[0]}}" type="{{icon[0]}}" style="margin-right:8px;color:{{icon[1]||'#333333'}}"/>
+  <text number-of-lines="{{3}}">{{content}}</text>
+</view>

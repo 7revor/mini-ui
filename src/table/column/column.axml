@@ -1,0 +1,8 @@
+<view a:if="{{scope.type==='header'}}" style="{{width?`width:${width}px;`:'flex:1;margin-left:-10px;'}}">
+  {{title}}
+</view>
+<view a:if="{{scope.type!=='header'}}" class="{{className||''}}" style="{{width?`width:${width};`:'flex:1;'}}">
+  <slot>
+    {{scope.row[dataKey]}}
+  </slot>
+</view>

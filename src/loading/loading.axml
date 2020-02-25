@@ -1,0 +1,6 @@
+<view class="py-loading-container {{className||''}}">
+  <view a:if="{{loading}}" class="py-loading" style="{{style||''}}">
+    <icon custom type="icon-loading" class="icon icon-loading icon-loading-large" />
+  </view>
+  <slot/>
+</view>

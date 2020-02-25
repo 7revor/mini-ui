@@ -1,0 +1,27 @@
+<view class="py-pagenation-container">
+  <py-button disabled="{{pageNo==1}}" onTap="changeHandler" data-type="pre" class="py-pagenation-btn">
+    <icon  type="return"  size="xs" style="color:{{pageNo==1?'#C7C7C7':'#333333'}}" />
+  </py-button>
+   <text a:if="{{pageNo-1>num&&pageCount>size}}" style="margin:0 4px;">...</text>
+  <view a:for="{{arr}}" a:for-index="idx">
+    <py-button a:if="{{pageNo<=num?
+                      idx<=size-1
+                      :
+                      pageNo>pageCount-num?
+                      idx>pageCount-size-1
+                      :
+                      (idx+1<=pageNo+num)&&(idx+1>=pageNo-num)}}" 
+      onTap="changeHandler" 
+      data-page="{{idx+1}}" 
+      class="py-pagenation-btn {{idx+1==pageNo?'active':''}}">
+      {{idx+1}}
+      </py-button>
+  </view>
+  <text a:if="{{pageCount-pageNo>num&&pageCount>size}}" style="margin:0 4px;">...</text>
+  <py-button disabled="{{pageNo==pageCount}}" onTap="changeHandler" data-type="next" class="py-pagenation-btn">
+    <icon style="color:{{pageNo==pageCount?'#C7C7C7':'#333333'}}" type="enter" size="xs" />
+  </py-button>
+  <view class="py-pagenation-label">
+  {{`${pageNo}/${pageCount}`}}
+  </view>
+</view>

@@ -1,0 +1,19 @@
+<view class="row-start-center content">
+  <py-navigator currentRoute="{{currentRoute}}" config="{{config}}" /> <!--左侧导航区-->
+  <view class="pages">                                                 <!--右侧导航区-->
+    <view a:if="{{currentRoute.commonHeader !== false}}" class="py-navigator-page-header column-between-start">    <!--公共右侧标题区域-->
+      <bread-crumb />   <!--面包屑导航-->
+        <view a:if="{{!tabs.length}}" class="py-navigator-page-title">{{currentRoute.name}}</view>
+        <tab-bar className="frame-tab" onChange="tabChange" activeKey="{{activeKey}}" tabs="{{tabs}}" a:else/>
+    </view>
+    <view class="{{currentRoute.commonBackground===false?'py-navigator-page-content-blank':'py-navigator-page-content'}}">
+      <slot />
+    </view>
+  </view>
+  <py-dialog ref="feedback_dialog"/>  <!--交互弹窗-->
+  <toast ref="feedback_toast"/>       <!--toast-->
+  <view a:if="{{loading_visible}}" class="py-frame-loading">     <!--全局遮罩-->
+    <icon type="icon-loading" custom class="icon icon-loading"/>
+    <view a:if="{{loading_content}}">{{loading_content}}</view>
+  </view>
+</view>

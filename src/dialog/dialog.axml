@@ -1,0 +1,21 @@
+<view a:if="{{open}}" class="gpu py-dialog {{visible?'active':''}}">
+  <view class="py-dialog-body {{visible?'active':''}}">
+    <icon onTap="close" type="close" size="xs" class="py-dialog-close"/>
+    <slot name="header">
+      <view class="py-dialog-header">
+        {{dialog.title||'提示'}}
+      </view>
+    </slot>
+    <slot name="content">
+      <view class="py-dialog-content">
+        {{content}}
+      </view>
+    </slot>
+    <slot name="footer">
+      <view class="py-dialog-footer">
+        <py-button a:if="{{type==='confirm'}}" onTap="cancel" style="width:56px;height:32px;">{{cancelText||'取消'}}</py-button>
+        <py-button onTap="sure" style="width:56px;height:32px;margin-left:10px;" type="danger">{{sureText||'确定'}}</py-button>
+      </view>
+    </slot>
+  </view>
+</view>

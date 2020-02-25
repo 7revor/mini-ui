@@ -1,0 +1,124 @@
+.py-navigator {
+  width: 180px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.01);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.py-navigator-logoArea {
+  width: 180px;
+  height: 169px;
+  margin-left: 0;
+}
+
+.py-navigator-image {
+  width: 66px;
+  height: 66px;
+  margin-top: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.py-navigator-app-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333333;
+  margin-top: 8px;
+  line-height: 24px;
+}
+
+.py-navigator-app-memo {
+  font-size: 12px;
+  color: #999999;
+  margin-top: 8px;
+  line-height: 18px;
+}
+
+.py-navigator-menu {
+  width: 100%;
+  flex: 1;
+}
+
+.py-navigator-menu-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 14px;
+  color: #333333;
+  height: 44px;
+  line-height: 44px;
+  transition: all .3s;
+  padding: 0 20px 0 20px;
+  position: relative;
+}
+
+.py-navigator-menu-arrow {
+  transition: all .3s;
+  position: absolute;
+  right: 20px;
+  height: 44px;
+}
+
+.py-navigator-menu-icon-pre {
+  width: 18px;
+  height: 18px;
+  margin-right: 3px;
+}
+
+.py-navigator-menu-item {
+  width: 180px;
+  cursor: pointer;
+}
+
+.sub-menu {
+  transition: all .3s;
+  width: 180px;
+  overflow: hidden;
+  background-color: #F7F8FA;
+}
+
+.py-navigator-submenu-item {
+  color: #333333;
+  transition: all .3s;
+  width: 180px;
+  height: 44px;
+  font-size: 14px;
+  padding-left: 42px;
+  line-height: 44px;
+  cursor: pointer;
+}
+
+.py-navigator-submenu-item.active, .py-navigator-menu-label.active {
+  color: #F54531;
+  background-color: #FFF6F5;
+}
+
+.py-navigator-submenu-item:hover {
+  color: #F54531;
+}
+
+.py-navigator-overlay-menu {
+  width: 120px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.2);
+  padding: 4px 0;
+}
+
+.py-navigator-overlay-menu-item {
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 30px;
+}
+
+.py-navigator-overlay-menu-item:hover {
+  background-color: #FFF6F5;
+  color: #F54531;
+}

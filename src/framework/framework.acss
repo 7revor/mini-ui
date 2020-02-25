@@ -1,0 +1,80 @@
+.pages {
+  height: 100%;
+  flex: 1;
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.content {
+  margin: 24px 0;
+  width: 1280px;
+  display: flex;
+  align-self: stretch;
+}
+
+.py-navigator-page-header {
+  width: 100%;
+  background-color: #fff;
+  height: 84px;
+  margin-bottom: 12px;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.03);
+}
+
+.py-navigator-page-content {
+  width: 100%;
+  flex: 1;
+  background-color: #fff;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.03);
+}
+
+.py-navigator-page-content-blank {
+  width: 100%;
+  flex: 1;
+  height: 0;
+}
+
+.py-navigator-page-content-blank>view {
+  height: 100%;
+}
+
+.py-navigator-page-content>view {
+  height: 100%;
+}
+
+.py-navigator-page-title {
+  font-size: 14px;
+  color: #000000;
+  height: 44px;
+  padding: 12px 24px;
+}
+
+.py-frame-loading {
+  position: fixed;
+  z-index: 1400;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(0, 0%, 100%, .7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color .2s;
+  padding-bottom: 100px;
+}
+
+.py-frame-loading .icon-loading {
+  width: 30px;
+  height: 30px;
+}
+
+.py-frame-loading>view {
+  color: #333333;
+  margin-top: 12px;
+  font-size: 12px;
+}
+.frame-tab{
+  height: 44rpx;
+  border: 0;
+}
