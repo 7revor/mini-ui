@@ -148,3 +148,4 @@ lib
 .npmignore
 .idea
 .travis.yml
+src/

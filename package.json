@@ -1,14 +1,17 @@
 {
   "name": "py-mini-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "商家应用PC端UI组件",
   "keywords": [
     "ui",
     "mini-app",
     "javascript"
   ],
+  "scripts": {
+    "build": "node compiler.js"
+  },
   "files": [
-    "es"
+    "src"
   ],
   "repository": {
     "type": "git",
@@ -18,5 +21,9 @@
   "license": "ISC",
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6"
   }
 }
