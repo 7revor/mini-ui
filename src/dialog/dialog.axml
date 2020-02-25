@@ -3,7 +3,7 @@
     <icon onTap="close" type="close" size="xs" class="py-dialog-close"/>
     <slot name="header">
       <view class="py-dialog-header">
-        {{dialog.title||'提示'}}
+        {{title||'提示'}}
       </view>
     </slot>
     <slot>

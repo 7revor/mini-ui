@@ -6,7 +6,8 @@ const transOpts = {
     ["@babel/preset-env", {
       "modules": false
     }]
-  ]
+  ],
+  "plugins": ["@babel/plugin-transform-runtime"]
 }; // babel 编译
 
 if (fs.existsSync('es')) {
