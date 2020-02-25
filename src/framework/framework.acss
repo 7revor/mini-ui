@@ -75,6 +75,6 @@
   font-size: 12px;
 }
 .frame-tab{
-  height: 44rpx;
+  height: 44px;
   border: 0;
 }
