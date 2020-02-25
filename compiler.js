@@ -10,9 +10,9 @@ const transOpts = {
 }; // babel 编译
 
 if (fs.existsSync('es')) {
-  deleteFolderRecursive('es')
-  fs.mkdirSync('es');  // 创建 es 目录
+  deleteFolderRecursive('es');
 }
+fs.mkdirSync('es');  // 创建 es 目录
 compiler('src');
 
 /**
