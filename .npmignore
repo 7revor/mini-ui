@@ -142,8 +142,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-run.js
-lib
+compiler.js
 .gitignore
 .npmignore
 .idea
