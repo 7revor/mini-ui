@@ -13,3 +13,5 @@ deploy:
   api_key: "$NPM_TOKEN"
   on:
     repo: 7revor/mini-ui
+    tag: publish
+
