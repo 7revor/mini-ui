@@ -24,7 +24,7 @@
       </view>
     </view>
   </view>
-  <overlay visible="{{visible}}" target="{{target}}" safeNode="{{target}}" data-index="{{target}}" shouldUpdatePosition="true" onRequestClose="onOverlayClose" offset="{{[115,-25]}}">
+  <overlay visible="{{visible}}" target="{{target}}" safeNode="{{target}}" data-index="{{target}}" onRequestClose="onOverlayClose" offset="{{[115,-25]}}">
     <view a:if="{{sjs.hasNext(overlayMenu)}}" class="py-navigator-overlay-menu">
       <view a:for="{{overlayMenu.children}}" class="py-navigator-overlay-menu-item" data-menu="{{item}}" onTap="overlayMenuTapHandler">
         {{item.name}}
