@@ -22,81 +22,77 @@ Component({
   },
   methods: {
     /**
-     * 是够含有子路由
-     */
-    hasChildren(route) {
-      return route.children && route.children.length
-    },
-    /**
-     * 路由是否可以直接跳转
-     */
-    canNavigate(route) {
-      return !this.hasChildren(route) || (this.hasChildren(route) && route.childType === 'tab'); // 没有子路由或者子路由为tab
-    },
-    /**
-     * 是否为同一路径
-     */
-    isSamePath(path) {
-      return this.props.currentRoute.path === path
-    },
-    /**
      * 一级菜单点击
-     * @param {}} ev
      */
     menuTap(ev) {
-      const {dataset: {menu}} = ev.target;
-      const length = (menu.children || {}).length || 0;
-      const id = ev.target.id;
-      if (id) {
-        const targetHeight = this.data.heights[id];
-        const targetRotate = this.data.rotates[id];
-        this.setData({
-          ['heights.' + id]: targetHeight ? 0 : length * 44 + 'px',
-          ['rotates.' + id]: targetRotate === 'rotate(0deg)' || !targetRotate ? 'rotate(180deg)' : 'rotate(0deg)'
-        })
-      }
-      if (menu.url) my.navigateTo({url: menu.url}); // 手动跳转
-      else if (this.canNavigate(menu) && !this.isSamePath(menu.path)) { // 没有子路由，或者tab类型
-        this.$page.$router.push(menu.path);
+      const { dataset: { idx } } = ev.target;
+      const menu = this.props.config.routes[idx];
+      menu.$id = `menu-${idx}`;
+      if (!this.navigate(menu)) { // 默认类型，展开子菜单
+        this.menuExband(menu);
       }
     },
     /**
      * 二级菜单点击
      */
     subMenuTap(ev) {
-      const currTarget = ev.target.id; // 点击目标
-      const {subMenu: currMenu, path} = ev.target.dataset;
-      currMenu.pathStack = path;
-      if (currMenu.childType === 'overlay') {     // 浮框类型子路由
-        const isSameNode = this.data.target === currTarget;
-        this.setData({
-          visible: isSameNode ? false : true,
-          target: isSameNode ? '' : currTarget,
-          overlayMenu: isSameNode ? {} : currMenu
-        })
-      } else {      // 不是浮框类型
-        const targerPath = path.filter(path => path).join('');
-        if (!this.isSamePath(targerPath)) {
-          this.$page.$router.push(targerPath)
-        }
-        ;  // 直接跳转
-        this.setData({overlayMenu: {}})
-      }
+      const { dataset: { idx, pIdx } } = ev.target;
+      const menu = this.props.config.routes[pIdx];
+      const subMenu = menu.children[idx];
+      subMenu.$id = `menu-${pIdx}-${idx}`;
+      this.navigate(subMenu);
     },
     /**
-     * 悬浮菜单点击事件
-     * @param {*} ev
+     * 悬浮菜单点击
      */
     overlayMenuTapHandler(ev) {
       const menu = ev.target.dataset.menu;    // 点击的悬浮菜单
-      const overlayMenu = this.data.overlayMenu; // 当前二级菜单
-      let pathStack = overlayMenu.pathStack.filter(path => path);
-      this.$page.$router.push(`${pathStack.join('')}${menu.path}`);
-      this.setData({ visible: false,overlayMenu:{},target:'' });
+      if (menu.childType === 'overlay') throw new Error('overlay菜单的子菜单不能是overlay');
+      this.navigate(menu);
+      this.setData({ visible: false, overlayMenu: {}, target: '' });
+    },
+    /**
+     * 路由跳转
+     */
+    navigate(menu) {
+      if (menu.url) { my.navigateTo({ url: menu.url }); return };                   // 手动跳转
+      if (!this.hasChildren(menu)) { this.$page.$router.push(menu.$path); return };  // 无子路由，直接跳转
+      /**
+       * 有子路由
+       */
+      if (menu.childType === 'tab') { this.$page.$router.push(menu.$path); return; }    // tab 类型，直接跳转
+      if (menu.childType === 'overlay') { // 浮框类型
+        this.overlayVisibleHandler(menu);
+        return;
+      }
+      this.setData({ overlayMenu: {} });
+      return false;
+    },
+    /**
+     * 菜单折叠
+     */
+    menuExband(menu) {
+      if (!menu.$id) return;
+      const targetHeight = this.data.heights[menu.$id];
+      const targetRotate = this.data.rotates[menu.$id];
+      this.setData({
+        ['heights.' + menu.$id]: targetHeight ? 0 : menu.children.length * 44 + 'px',
+        ['rotates.' + menu.$id]: targetRotate === 'rotate(0deg)' || !targetRotate ? 'rotate(180deg)' : 'rotate(0deg)'
+      })
+    },
+    /**
+     * 浮框显示
+     */
+    overlayVisibleHandler(menu) {
+      const isSameNode = this.data.target === menu.$id;
+      this.setData({
+        visible: isSameNode ? false : true,
+        target: isSameNode ? '' : menu.$id,
+        overlayMenu: isSameNode ? {} : menu
+      })
     },
     /**
      * 悬浮菜单关闭
-     * @param {*} ev
      */
     onOverlayClose(ev) {
       const requestIndex = ev.target.dataset.index
@@ -111,7 +107,13 @@ Component({
      */
     goHome() {
       const init_path = (this.props.config.option || {}).initPath || '/'
-      if (!this.isSamePath(init_path)) this.$page.$router.push(init_path);
+      this.$page.$router.push(init_path);
     },
+    /**
+     * 是够含有子路由
+     */
+    hasChildren(route) {
+      return route.children && route.children.length
+    }
   },
 });

@@ -6,6 +6,9 @@ Component({
     this.$page.$router.setAfterChange(this, 'onPathChange'); // 跳转监听
     this.onPathChange();
   },
+  didUnmount() {
+    this.$page.$router.removeAfterChange(this, 'onPathChange'); // 删除跳转监听
+  },
   methods: {
     /**
      * 页面路由跳转回调

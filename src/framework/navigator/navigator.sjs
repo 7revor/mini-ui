@@ -8,6 +8,6 @@ export default {
         return full_path.indexOf(path) !== -1
     },
     hasNext(menu) {
-        return menu.children && menu.children.length && menu.childType !== 'tab'
+         return menu.children && menu.children.length && (menu.childType !== 'tab' && menu.childType !== 'overlay')
     }
 }
