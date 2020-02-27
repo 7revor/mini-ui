@@ -25,7 +25,7 @@ Component({
      * 一级菜单点击
      */
     menuTap(ev) {
-      const { dataset: { idx } } = ev.target;
+      const {dataset: {idx}} = ev.target;
       const menu = this.props.config.routes[idx];
       menu.$id = `menu-${idx}`;
       if (!this.navigate(menu)) { // 默认类型，展开子菜单
@@ -36,7 +36,7 @@ Component({
      * 二级菜单点击
      */
     subMenuTap(ev) {
-      const { dataset: { idx, pIdx } } = ev.target;
+      const {dataset: {idx, pIdx}} = ev.target;
       const menu = this.props.config.routes[pIdx];
       const subMenu = menu.children[idx];
       subMenu.$id = `menu-${pIdx}-${idx}`;
@@ -47,25 +47,36 @@ Component({
      */
     overlayMenuTapHandler(ev) {
       const menu = ev.target.dataset.menu;    // 点击的悬浮菜单
-      if (menu.childType === 'overlay') throw new Error('overlay菜单的子菜单不能是overlay');
+      if (menu.children && menu.childType !== 'tab') throw new Error('overlay路由的子路由只能是tab类型');
       this.navigate(menu);
-      this.setData({ visible: false, overlayMenu: {}, target: '' });
+      this.setData({visible: false, overlayMenu: {}, target: ''});
     },
     /**
      * 路由跳转
      */
     navigate(menu) {
-      if (menu.url) { my.navigateTo({ url: menu.url }); return };                   // 手动跳转
-      if (!this.hasChildren(menu)) { this.$page.$router.push(menu.$path); return };  // 无子路由，直接跳转
+      if (menu.url) {
+        my.navigateTo({url: menu.url});
+        return
+      }
+      ;                   // 手动跳转
+      if (!this.hasChildren(menu)) {
+        this.$page.$router.push(menu.$path);
+        return
+      }
+      ;  // 无子路由，直接跳转
       /**
        * 有子路由
        */
-      if (menu.childType === 'tab') { this.$page.$router.push(menu.$path); return; }    // tab 类型，直接跳转
+      if (menu.childType === 'tab') {
+        this.$page.$router.push(menu.$path);
+        return;
+      }    // tab 类型，直接跳转
       if (menu.childType === 'overlay') { // 浮框类型
         this.overlayVisibleHandler(menu);
         return;
       }
-      this.setData({ overlayMenu: {} });
+      this.setData({overlayMenu: {}});
       return false;
     },
     /**
