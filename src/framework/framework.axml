@@ -10,10 +10,10 @@
       <slot />
     </view>
   </view>
-  <py-dialog ref="feedback_dialog"/>  <!--交互弹窗-->
-  <toast ref="feedback_toast"/>       <!--toast-->
-  <view a:if="{{loading_visible}}" class="py-frame-loading">     <!--全局遮罩-->
-    <icon type="icon-loading" custom class="icon icon-loading"/>
-    <view a:if="{{loading_content}}">{{loading_content}}</view>
-  </view>
+</view>
+<py-dialog ref="feedback_dialog"/>  <!--交互弹窗-->
+<toast ref="feedback_toast"/>       <!--toast-->
+<view a:if="{{loading_visible}}" class="py-frame-loading">     <!--全局遮罩-->
+  <icon type="icon-loading" custom class="icon icon-loading"/>
+  <view a:if="{{loading_content}}">{{loading_content}}</view>
 </view>
