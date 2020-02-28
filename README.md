@@ -1,10 +1,10 @@
 # 小程序PC端UI组件库
-## 使用
-### 安装 
+# 使用
+## 安装 
 ```
 npm install py-mini-ui --save
 ```
-### 引入
+## 引入
 在页面json中文件中进行注册，如framework组件的注册如下所示：
 ```js
 {
@@ -15,50 +15,47 @@ npm install py-mini-ui --save
 ```
 **转译后的代码存放于es目录下，可直接用于打包发布。源码存放于src目录下，可用于调试。**
    
-在axml文件中进行调用：
-```
-  <py-framework config="{{framework_config}}"/>
-```
-## 组件文档
-### button
+# 组件说明
+## button
 基础按钮组件
-#### props
-- `onTap`:点击事件
-- `className`:外部类名
-- `style`: 外部内联样式
-- `type`:按钮类型（default,primary,danger）
+### props
+- `onTap`：点击事件
+- `className`：外部类名
+- `style`： 外部内联样式
+- `type`：按钮类型（default,primary,danger）
+- `disabled`：是否禁用
 #### slot
-- `default`:按钮内容
+- 默认插槽为按钮显示内容
 #### eg.
 ```
 <py-button onTap="save" type="danger" className="save-btn">保存</py-button>
 ```
-### radio
+## radio
 单选组件，可结合grop使用，基本用法和移动端一致
 **单独使用**
-#### props
+### props
 - `onTap`:点击事件
 - `checked`:是否选中
 - `className`
 - `style`
 - `value`:选项值（结合group使用）
 - `parent`:group id(配合group的id属性)
-#### slot
-- `default`:内容插槽
-#### eg.
+### slot
+- 默认插槽为按钮显示内容
+### eg.
 ```
 <py-radio onTap="{{optionChange}}" checked="{{checked==='OptionA'}}">OptionA</py-radio>
 ```
 
 **group**
-#### props
+### props
 - `onChange`:选项切换事件
 - `value`:选中值
 - `identify`:选项标识键
 - `id`:选项组id，配合radio的parent
-#### slot
-- `default`:any
-#### eg.
+### slot
+- 默认插槽为按钮组内容
+### eg.
 ```
 <py-radio-group onChange="{{radioChange}}" value="{{checkedValue}}">
     <py-radio value="A">OptionA</py-radio>
@@ -66,32 +63,32 @@ npm install py-mini-ui --save
     <py-radio value="C">OptionC</py-radio>
 </py-group>
 ```
-### checkbox
+## checkbox
 复选组件，可结合grop使用，基本用法和移动端一致
 **单独使用**
-#### props
+### props
 - `onTap`:点击事件
 - `checked`:是否选中
 - `className`
 - `style`
 - `value`:选项值（结合group使用）
 - `parent`:group id(配合group的id属性)
-#### slot
-- `default`:内容插槽
-#### eg.
+### slot
+- 默认插槽为显示内容
+### eg.
 ```
 <py-checkbox onTap="{{optionChange}}" checked="{{checked==='OptionA'}}">OptionA</py-radio>
 ```
 
 **group**
-#### props
+### props
 - `onChange`:选项切换事件
 - `checkedValue`:选中值（数组）
 - `identify`:选项标识键
 - `id`:选项组id，配合radio的parent
-#### slot
-- `default`:any
-#### eg.
+### slot
+- 默认插槽为显示内容
+### eg.
 ```
 <py-checkbox-group onChange="{{radioChange}}" checkedValue="{{checkedValue}}">
     <py-checkbox value="A">OptionA</py-radio>
@@ -99,17 +96,16 @@ npm install py-mini-ui --save
     <py-checkbox value="C">OptionC</py-radio>
 </py-checkbox-group>
 ```
-### pagenation
+## pagenation
 分页器
-#### props
+### props
 - `total`:记录总数
 - `pageSize`:每页记录条数
 - `pageNo`:当前页
 - `size`:分页器展示数量
 - `onChange`:页码切换事件
-#### slot
-- `default`:any
-#### eg.
+
+### eg.
 ```
 <pagenation total="{{total}}" 
             pageSize="{{pageSize}}"
@@ -143,15 +139,15 @@ Component({
 })
    
 ```
-### tabbar
+## tabbar
 tabbar组件，和移动端用法一致
-#### props
+### props
 - `tabs`:tabs数组
 - `activeKey`:当前激活的tabs
 - `onChange`:切换事件
-#### slot
+### slot
 - `[name]`:tab页内容，**slot name 需和 tabs 中的 key 一一对应**
-#### eg.
+### eg.
 ```
 <tabbar tabs="{{tabs}}" active-key="{{active_key}}">
     <view slot="onsale">出售中</view>
@@ -179,12 +175,13 @@ Component({
 })
    
 ```
-### dialog（定制）
+## dialog（定制）
 基础弹窗定制，和移动端用法一致
+### slot
 - `header`:头部
 - `default`:内容
 - `footer`:底部
-#### eg.
+### eg.
 ```
 <py-dialog ref="dialog">
     <goods-list />
@@ -203,9 +200,9 @@ Component({
     }
 })
 ```
-### framework
+## framework
 导航框架（结合py-router使用）
-#### props
+### props
 - `config`:框架配置
 
 完整示例：
@@ -284,9 +281,9 @@ Component({
   },
 };
 ```
-#### slot
+### slot
 - `default`:所有一级路由
-#### eg.
+### eg.
 ```
 <py-framework config="{{framework_config}}">
     <router>
@@ -297,7 +294,7 @@ Component({
     </router>
   </py-framework>
 ```
-### frame自带的交互
+## frame自带的交互
 frame将基本弹窗，toast和loading的逻辑集成在了内部，可供直接调用。
 
 入口页
@@ -329,7 +326,7 @@ Page({
   
 });
 ```
-#### dialog
+### dialog
 `my.$alert`，`my.$confirm`用法和移动端frame交互保持一致：
 - `content`：**默认显示内容**（若只传入字符串，则会默认作为content参数）
 - `sureText`：确认按钮文字
@@ -338,12 +335,14 @@ Page({
 - `before_sure`：确认按钮点击前回调，只有true时可以关闭
 - `after_close`：弹窗关闭后的回调
 
-#### toast
+### toast
 `my.$success`，`my.$toast`，`my.$error`用法和移动端frame交互保持一致：
 - `content`：**默认显示内容**（若只传入字符串，则会默认作为content参数）
 - `icon`：图标及颜色（toast方法支持传入自定义图标，格式为[icon-name,icon-color]）
 - `timeout`：多久后关闭
 
-
+#### loading
+- `my.$showLoading('xxx')`
+- `my.$hideLoading();`
 
 
