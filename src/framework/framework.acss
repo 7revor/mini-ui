@@ -111,7 +111,6 @@ page {
   justify-content: center;
   align-items: center;
   transition: background-color .2s;
-  padding-bottom: 100px;
 }
 
 .py-frame-loading .icon-loading {
