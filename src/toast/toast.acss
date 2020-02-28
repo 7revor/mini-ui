@@ -6,7 +6,7 @@
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   border: 1px solid #fff;
   background-color: #fff;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, 0);
   border-radius: 3px;
