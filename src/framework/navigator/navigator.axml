@@ -11,9 +11,11 @@
     <!--一级菜单-->
     <view a:for="{{config.routes}}" a:for-item="menu" class="py-navigator-menu-item" a:for-index="idx" id="{{'menu-'+idx}}">
       <view a:if="{{menu.isNavigator!==false}}" onTap="menuTap" data-idx="{{idx}}" class="py-navigator-menu-label {{sjs.isActive(menu,currentRoute)&&!sjs.hasNext(menu)?'active':''}}">
-        <icon a:if="{{menu.icon!==null}}" custom type="{{menu.icon}}" class="icon py-navigator-menu-icon-pre"/>
-        {{menu.name}}
-        <icon a:if="{{sjs.hasNext(menu)}}" custom type="icon-arrowDown" class="icon py-navigator-menu-arrow" style="{{transform:rotates['menu-'+idx]||'rotate(0deg)'}}"/>
+        <view style="align-self:stretch;">
+          <icon a:if="{{menu.icon!==null}}" custom type="{{menu.icon}}" class="icon py-navigator-menu-icon-pre"/>
+          {{menu.name}}
+        </view>
+        <icon a:if="{{sjs.hasNext(menu)}}" custom type="icon-arrowDown" class="icon py-navigator-menu-arrow" style="transform:{{rotates['menu-'+idx]||'rotate(0deg)'}};"/>
       </view>
       <!--二级菜单容器-->
       <view a:if="{{sjs.hasNext(menu)}}" class="sub-menu" style="{{height:heights['menu-'+idx]||0}}">
