@@ -1,3 +1,10 @@
-  <view class="py-button {{type?`py-button-${type}`:''}} {{className||''}} {{disabled?'disabled':''}}" style={{style}} onTap="tapHandler">
+<view a:if="{{!catchTap}}" class="py-button {{type?`py-button-${type}`:''}} {{size?size:''}} {{disabled?'disabled':''}} {{className||''}}" style="{{style||''}}" onTap="tapHandler">
+  <view class="py-button-container">
     <slot/>
   </view>
+</view>
+<view a:else class="py-button {{type?`py-button-${type}`:''}} {{size?size:''}} {{disabled?'disabled':''}} {{className||''}}" style="{{style||''}}" catchTap="catchTapHandler">
+  <view class="py-button-container">
+    <slot/>
+  </view>
+</view>

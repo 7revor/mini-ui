@@ -5,6 +5,7 @@ Component({
     onTap: () => { },
     className: '',
     style: '',
-    type:''
+    type:'',
+    size:''
   }
 });
