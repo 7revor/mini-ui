@@ -16,7 +16,7 @@
   text-align: center;
   color: #333333;
   background-image: linear-gradient(90deg, #FF724F 5%, #EE4443 100%);
-  background: #F0F2F5;
+  background: #FFF;
   border: 1px solid #EAEBF0;
   cursor: pointer;
   display: inline-block;
