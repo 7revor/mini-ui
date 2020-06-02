@@ -15,6 +15,7 @@ page {
   height: 14px;
 }
 
+
 .icon-loading {
   animation: rotate 1s linear infinite;
   width: 20px;
