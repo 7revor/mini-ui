@@ -3,6 +3,7 @@
  * @param {props} props 组件props
  * @param {event} event 事件对象
  */
+
 export function fmtEvent(props, event) {
   let dataset = {};
   Object.keys(props).forEach(key => {
