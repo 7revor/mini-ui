@@ -57,6 +57,13 @@ Component({
      * 路由跳转
      */
     navigate(menu) {
+
+      if (menu.pcUrl) {
+        my.qn.navigateToWebPage({
+          url: menu.pcUrl, // URL
+        });
+        return true;
+      }
       if (menu.url) {
         my.navigateTo({ url: menu.url });
         return true;
